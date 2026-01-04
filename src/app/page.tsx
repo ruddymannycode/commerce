@@ -1,65 +1,65 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ShoppingCart, ShieldCheck } from "lucide-react";
+import Button from "@/components/ui/Button";
 
+/**
+ * Landing Page Component
+ * Serve as the entry point to the application, showcasing the auth modules.
+ */
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-slate-50 dark:bg-slate-950">
+      {/* Decorative background gradients */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-indigo-500/5 blur-[150px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-purple-500/5 blur-[150px] rounded-full" />
+      </div>
+
+      <div className="relative z-10 text-center space-y-8 max-w-2xl">
+        <div className="flex justify-center">
+          <div className="p-4 bg-indigo-600 text-white rounded-3xl shadow-2xl shadow-indigo-500/40">
+            <ShoppingCart size={48} strokeWidth={2.5} />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h1 className="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Next.js E-Commerce <br />
+            <span className="text-indigo-600">Secure Authentication</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg text-slate-600 dark:text-slate-400">
+            A premium full-stack authentication system for users and administrators. 
+            Built with TypeScript, Tailwind CSS, and Next.js 15.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* User Side Link */}
+          <Link href="/auth/signup">
+            <div className="glass group p-6 rounded-3xl text-left hover:border-indigo-500/50 transition-all cursor-pointer">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">User Access</h3>
+              <p className="text-sm text-slate-500 mb-4">Register as a customer, verify your account via OTP, and manage your orders.</p>
+              <Button variant="ghost" className="p-0 text-indigo-600 group-hover:pl-2 transition-all" rightIcon={<ArrowRight size={18} />}>
+                Get Started
+              </Button>
+            </div>
+          </Link>
+
+          {/* Admin Side Link */}
+          <Link href="/auth/login">
+            <div className="glass group p-6 rounded-3xl text-left hover:border-indigo-500/50 transition-all cursor-pointer">
+              <div className="flex items-center space-x-2 mb-2">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Admin Portal</h3>
+                <ShieldCheck size={18} className="text-indigo-600" />
+              </div>
+              <p className="text-sm text-slate-500 mb-4">Secure administrator login to manage products, customers, and site settings.</p>
+              <Button variant="ghost" className="p-0 text-indigo-600 group-hover:pl-2 transition-all" rightIcon={<ArrowRight size={18} />}>
+                Secure Login
+              </Button>
+            </div>
+          </Link>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
